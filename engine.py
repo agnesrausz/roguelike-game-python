@@ -15,10 +15,12 @@ def create_board(width, height):
     random_line_index = 0
     random_row_index = 0
     while obstacle_counter != obstacle_max:
-        random_line_index = random.randint(1, height - 1)
-        random_row_index = random.randint(1, width - 1)
+        random_line_index = random.randint(1, height - 2)
+        random_row_index = random.randint(1, width - 2)
         if board[random_line_index][random_row_index] != obstacle:
+            board[random_line_index] = list(board[random_line_index])
             board[random_line_index][random_row_index] = obstacle
+            board[random_line_index] = "".join((board[random_line_index]))
             obstacle_counter += 1
     return board
 

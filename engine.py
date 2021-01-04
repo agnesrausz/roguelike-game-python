@@ -1,15 +1,12 @@
 def create_board(width, height):
-    '''
-    Creates a new game board based on input parameters.
-
-    Args:
-    int: The width of the board
-    int: The height of the board
-
-    Returns:
-    list: Game board
-    '''
-    pass
+    border = "🌳"
+    fill = "🎋"
+    board = []
+    board.append(border * width)
+    for i in range(height - 2):
+        board.append(border + (fill * (width - 2)) + border)
+    board.append(border * width)
+    return board
 
 
 def put_player_on_board(board, player):

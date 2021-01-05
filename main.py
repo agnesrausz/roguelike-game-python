@@ -11,14 +11,34 @@ BOARD_HEIGHT = 20
 
 
 def create_player():
-    '''
-    Creates a 'player' dictionary for storing all player related informations - i.e. player icon, player position.
-    Fell free to extend this dictionary!
-
-    Returns:
-    dictionary
-    '''
-    pass
+    male_nurse = {
+                "Name": "Tyson",
+                "Race": "Bodybuilder male-nurse",
+                "Type": "Warrior",
+                "Health": "10",
+                "Damage": "3",
+    }
+    not_crazy_scientist = {
+                "Name": "Cili",
+                "Race": "Consistent female orator",
+                "Type": "Mage",
+                "Health": "7",
+                "Damage": "5"
+    }
+    pali_gyorfi = {
+                "Name": "Pal Gyorfi",
+                "Race": "Make you stay at home kind of man",
+                "Type": "Archer",
+                "Health": "5",
+                "Damage": "5"
+    }
+    op_char = {
+                "Name": "Achilles Lakatos",
+                "Race": "Definitely not c-type",
+                "Type": "Rogue",
+                "Health": "999",
+                "Damage": "999"
+    }
 
 
 def main():

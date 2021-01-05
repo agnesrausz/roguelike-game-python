@@ -1,7 +1,7 @@
 import random
 
 
-def create_board(width, height):
+def create_board(width=30, height=20):
     board = []
     # icon section
     border = "🌳"
@@ -9,6 +9,7 @@ def create_board(width, height):
     collectable = "💉"
     obstacle = "🗻"
     enemy = "🧬"
+    player = "🦦"
     # icon section
     # counter section
     enemy_counter = 0
@@ -53,6 +54,10 @@ def create_board(width, height):
             board[random_line_index][random_row_index] = enemy
             board[random_line_index] = "".join((board[random_line_index]))
             enemy_counter += 1
+    # this section places the player
+    board[2] = list(board[2])
+    board[2][2] = player
+    board[2] = "".join(board[2])
     return board
 
 

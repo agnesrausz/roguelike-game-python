@@ -29,7 +29,7 @@ def create_player():
     }
     pali_gyorfi = {
                 "Name": "Pal Gyorfi",
-                "Race": "Make you stay at home kind of man",
+                "Race": "Makes you stay at home kind of man",
                 "Type": "Archer",
                 "Health": "5",
                 "Damage": "5",

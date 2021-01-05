@@ -2,18 +2,31 @@ import random
 
 
 def create_board(width, height):
+    board = []
+    # icon section
     border = "🌳"
     fill = "🎋"
-    board = []
+    collectable = "💉"
     obstacle = "🗻"
+    enemy = "🧬"
+    # icon section
+    # counter section
+    enemy_counter = 0
     obstacle_counter = 0
+    collectable_counter = 0
+    # counter section
+    # max section
+    collectable_max = 2
     obstacle_max = (width * height) // 100 * 15
+    enemy_max = (width * height) // 100 * 2
+    # max section
     board.append(border * width)
     for i in range(height - 2):
         board.append(border + (fill * (width - 2)) + border)
     board.append(border * width)
     random_line_index = 0
     random_row_index = 0
+    # this section fills the board with obstacles
     while obstacle_counter != obstacle_max:
         random_line_index = random.randint(1, height - 2)
         random_row_index = random.randint(1, width - 2)
@@ -22,6 +35,24 @@ def create_board(width, height):
             board[random_line_index][random_row_index] = obstacle
             board[random_line_index] = "".join((board[random_line_index]))
             obstacle_counter += 1
+    # this section fills the board with collectables
+    while collectable_max > collectable_counter:
+        random_line_index = random.randint(1, height - 2)
+        random_row_index = random.randint(1, width - 2)
+        if board[random_line_index][random_row_index] != obstacle:
+            board[random_line_index] = list(board[random_line_index])
+            board[random_line_index][random_row_index] = collectable
+            board[random_line_index] = "".join((board[random_line_index]))
+            collectable_counter += 1
+    # this section fills the board with enemies
+    while enemy_max > enemy_counter:
+        random_line_index = random.randint(1, height - 2)
+        random_row_index = random.randint(1, width - 2)
+        if board[random_line_index][random_row_index] != obstacle and board[random_line_index][random_row_index] != collectable:
+            board[random_line_index] = list(board[random_line_index])
+            board[random_line_index][random_row_index] = enemy
+            board[random_line_index] = "".join((board[random_line_index]))
+            enemy_counter += 1
     return board
 
 

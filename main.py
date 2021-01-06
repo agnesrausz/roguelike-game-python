@@ -43,6 +43,7 @@ def create_player():
                 "Damage:": "999",
                 "Special ability:": "Makes 3 exact copy of himself during daytime, at nighttime makes 10 copy."
     }
+    util.clear_screen()
     print("Please select a character!")
     print("1")
     for key, value in male_nurse.items():
@@ -59,10 +60,13 @@ def create_player():
     choice = input("\nEnter the selected character's number(1-4)!")
     if choice == "1":
         return male_nurse
+        util.clear_screen()
     elif choice == "2":
         return not_crazy_scientist
+        util.clear_screen()
     elif choice == "3":
         return pali_gyorfi
+        util.clear_screen()
     elif choice == "4":
         cheatcode = ""
         while cheatcode != "nincs egy cigid?" or cheatcode != "q":
@@ -70,10 +74,12 @@ def create_player():
             if cheatcode == "nincs egy cigid?":
                 return op_char
             if cheatcode == "q":
-                create_player()     
+                create_player()    
     else:
+        util.clear_screen()
         print("That wasn't an option")
         create_player()
+
 
 def main():
     player = create_player()

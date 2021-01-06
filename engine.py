@@ -60,6 +60,102 @@ def create_board(width=30, height=20):
     board[2] = "".join(board[2])
     return board
 
+def inventory():
+    #generating inventory
+    board = create_board()
+    inventory = []
+    collectable = ["💉","💊","🧼","🧻","🍜"]
+    #filling the inventory list with the name of the items
+    for index in range(len(board)):
+        for index_2 in range(len(board)):
+            if board[index][index_2] == collectable[0]:
+                inventory.append("vaccine")
+            elif board[index][index_2]  == collectable[1]:
+                inventory.append("pill")
+            elif board[index][index_2]  == collectable[2]:
+                inventory.append("soap")
+            elif board[index][index_2]  == collectable[3]:
+                inventory.append("toilet paper")
+            elif board[index][index_2]  == collectable[4]:
+                inventory.append("instant soup")
+    return inventory
+
+def inventory_dictionary():
+    #printing inventory
+    inv = inventory()
+    collectable = ["💉","💊","🧼","🧻","🍜"]
+    #counting the occurances in the inventory list
+    sum_vaccine = inv.count("vaccine")
+    sum_pill = inv.count("pill")
+    sum_soap = inv.count("soap")
+    sum_tp = inv.count("toilet paper")
+    sum_instant = inv.count("instant soup")
+    #making the inventory dictionary
+    inventory_with_values = {
+        'vaccine': {
+                    "icon": collectable[0],
+                    "name": "vaccine",
+                    "amount": sum_vaccine,
+                    "description": "gives you +50 health"
+                    },
+        'pill': {
+                    "icon": collectable[1],
+                    "name": "pill",
+                    "amount": sum_pill,
+                    "description": "gives you +10 health"
+                    },
+        'soap': {
+                    "icon": collectable[2],
+                    "name": "soap",
+                    "amount": sum_soap,
+                    "description": "grants immunity for 2 rounds"
+                    },
+        'tp': {
+                    "icon": collectable[3],
+                    "name": "toilet paper",
+                    "amount": sum_tp,
+                    "description": "grants immunity for 1 round"
+                    },
+        'instant soup': {
+                    "icon": collectable[4],
+                    "name": "instant soup",
+                    "amount": sum_instant,
+                    "description": "ATK +50"
+                    }
+    }
+    return inventory_with_values
+
+def print_inventory():
+    inventory_with_values = inventory_dictionary()
+    print("********************************************************************")
+    print("icon","\t","name","\t","\t","amount","","description")
+    print("********************************************************************")
+    print("",inventory_with_values["vaccine"]["icon"],"\t",inventory_with_values["vaccine"]["name"],"\t",inventory_with_values["vaccine"]["amount"],"\t",inventory_with_values["vaccine"]["description"],"\n",
+          inventory_with_values["pill"]["icon"],"\t",inventory_with_values["pill"]["name"],"\t","\t",inventory_with_values["pill"]["amount"],"\t",inventory_with_values["pill"]["description"],"\n",
+          inventory_with_values["soap"]["icon"],"\t",inventory_with_values["soap"]["name"],"\t","\t",inventory_with_values["soap"]["amount"],"\t",inventory_with_values["soap"]["description"],"\n",
+          inventory_with_values["tp"]["icon"],"\t",inventory_with_values["tp"]["name"],"\t",inventory_with_values["tp"]["amount"],"\t",inventory_with_values["tp"]["description"],"\n",
+          inventory_with_values["instant soup"]["icon"],"\t",inventory_with_values["instant soup"]["name"],"\t",inventory_with_values["instant soup"]["amount"],"\t",inventory_with_values["instant soup"]["description"])
+    print("********************************************************************")
+    
+def enemies():
+    health = 20
+    enemy = {
+        "name": "coronavirus",
+        "type": "enemy",
+        "health": health
+    }
+    print(enemy["name"], enemy["type"], enemy["health"])
+    print("A wild %s appeared!"%enemy["name"])
+    enemy_alive = True
+    while enemy_alive == True:
+        hit = input("hit ")
+        if hit == "hit":
+            health = health - 10
+            enemy["health"] = health
+            print(enemy["name"], enemy["type"], enemy["health"])
+            if health == 0:
+                print("Enemy down, yay!")
+                enemy_alive = False
 
 def put_player_on_board(board, player):
     '''

@@ -1,3 +1,6 @@
 def display_board(board):
-    for i in board:
-        print(i)
+    for row in board:
+        for col in row:
+            print(col, end='')
+        print()
+    print()

@@ -72,7 +72,8 @@ def create_board(width=30, height=20):
     # correct border
     rectangle_place_to_board(board, create_rectangle(width, 1, border_color="🟫", fill_color="🟫"), height-1, 0)
     rectangle_place_to_board(board, create_rectangle(1, height, border_color="🟫", fill_color="🟫"), 0, width-1)
-    # place 
+    # creat gate
+    board[height-4][width-1] = "⛩️"
     return board
 
 

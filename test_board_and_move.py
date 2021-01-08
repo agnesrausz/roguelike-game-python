@@ -74,6 +74,7 @@ def create_board(width=30, height=20):
     rectangle_place_to_board(board, create_rectangle(1, height, border_color="🟫", fill_color="🟫"), 0, width-1)
     # creat gate
     board[height-4][width-1] = "⛩️"
+    create_items_on_board(board)
     return board
 
 
@@ -81,15 +82,6 @@ def rectangle_place_to_board(board, rectangle, place_row, place_col):
     for row in range(len(rectangle)):
         for col in range(len(rectangle[row])):
             board[row + place_row][col + place_col] = rectangle[row][col]
-
-
-def creat_grund_elem(elem_quantity, board, rectangle, place_row=random.randint(1, 29), place_col=random.randint(1, 29)):
-    while elem_quantity:
-        try:
-            rectangle_place_to_board(board, rectangle, place_row, place_col)
-            elem_quantity -= 1
-        except IndexError:
-            continue
 
 
 def display_board(board):
@@ -117,13 +109,13 @@ def put_player_on_board(board, player):
             player_coord_stand = board.index(row), row.index(player["icon"])
         except ValueError:
             pass
-    for row in range(len(board)):
-        for col in range(len(board[row])):
-            if player["coord"][0] == row and player["coord"][1] == col:
-                field = board[row][col]
 
+    field = board[player["coord"][0]][player["coord"][1]]
+
+    item = ""
     if field == "🟫":
         return None
+        # kívül ellenőrzés hogy hova vagy coordinata ne válzozzon
     elif field == "⬛":
         item = None
     elif field == "💉":
@@ -131,17 +123,56 @@ def put_player_on_board(board, player):
 
     print(player_coord_stand)
     print(field)
-    board[player_coord_stand[0]][player_coord_stand[1]] = "⬛"
-    x = player["coord"][0]
-    y = player["coord"][1]
-    board[y][x] = player["icon"]
+    if player_coord_stand != "":
+        board[player_coord_stand[0]][player_coord_stand[1]] = "⬛"
+    col = player["coord"][0]
+    row = player["coord"][1]
+    board[row][col] = player["icon"]
     return item
+
+
+def create_items_on_board(board):
+    height = len(board)
+    width = len(board[0])
+    collectable = ["💉","💊","🧼","🧻","🍜"]
+    elem_quantity = 2
+    while elem_quantity != 0:
+        row, col = random.randint(2,height-3), random.randint(2,width-3)
+        if board[row][col] == '⬛':
+            board[row][col] = collectable[0]
+            elem_quantity -= 1
+    for i in range(3):
+        elem_quantity = 4
+        while elem_quantity != 0:
+            row, col = random.randint(2,height-3), random.randint(2,width-3)
+            if board[row][col] == '⬛':
+                board[row][col] = collectable[i+1]
+                elem_quantity -= 1
+    elem_quantity = 1
+    while elem_quantity != 0:
+        row, col = random.randint(2,height-3), random.randint(2,width-3)
+        if board[row][col] == '⬛':
+            board[row][col] = collectable[4]
+            elem_quantity -= 1
+
+
+# player = {"icon": "🦦", "coord": (2, 2)}
+# board = create_board()
+# display_board(board)
+# board[1][1] = "🦦"
+# display_board(board)
+# put_player_on_board(board, player)
+# display_board(board)
 
 
 player = {"icon": "🦦", "coord": (2, 2)}
 board = create_board()
 display_board(board)
-board[1][1] = "🦦"
-display_board(board)
 put_player_on_board(board, player)
 display_board(board)
+while True:
+    x = int(input("x"))
+    y = int(input("y"))
+    player = {"icon": "🦦", "coord": (x, y)}
+    put_player_on_board(board, player)
+    display_board(board)

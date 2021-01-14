@@ -9,6 +9,7 @@ PLAYER_START_Y = 3
 BOARD_WIDTH = 30
 BOARD_HEIGHT = 20
 
+player = {"icon": "🦦", "coord": (PLAYER_START_X, PLAYER_START_Y)}
 
 def create_player():
     male_nurse = {
@@ -94,8 +95,12 @@ def main():
         key = util.key_pressed()
         if key == 'q':
             is_running = False
-        else:
-            pass
+        elif key == 'w':
+            player[coord] = (player[coord][0],player[coord][1])
+        elif key == 's':
+        elif key == 'a':
+        elif key == 'd':
+        
         util.clear_screen()
 
 

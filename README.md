@@ -128,8 +128,8 @@ You will learn and practice how to do the following things in Python:
 
 ## Background materials
 
-- [Dictionaries](project/curriculum/materials/competencies/python-data-structures/python-dictionaries.md.html)
-- [Modifying objects](project/curriculum/materials/competencies/python-data-structures/python-modifying-objects.md.html)
-- [User input](project/curriculum/materials/competencies/python-basics/python-io.md.html)
-- [Clean code](project/curriculum/materials/competencies/clean-code.md.html)
+- [Dictionaries](materials/python-dictionaries.md)
+- [Modifying objects](materials/python-modifying-objects.md)
+- [User input](materials/python-io.md)
+- [Clean code](materials/clean-code.md)
 - [About Python modules](https://realpython.com/python-modules-packages/) (until the section "Python Packages")

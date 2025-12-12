@@ -38,8 +38,11 @@ def main():
         key = util.key_pressed()
         if key == 'q':
             is_running = False
+        elif key in ['w', 'a', 's', 'd']:
+            engine.move_player(board, player, key)
         else:
             pass
+
         util.clear_screen()
 
 

@@ -29,7 +29,7 @@ def main():
     player = create_player()
     board = engine.create_board(BOARD_WIDTH, BOARD_HEIGHT)
 
-    util.clear_screen()
+    ui.clear_screen()
     is_running = True
     while is_running:
         engine.put_player_on_board(board, player)
@@ -43,7 +43,7 @@ def main():
         else:
             pass
 
-        util.clear_screen()
+        ui.clear_screen()
 
 
 if __name__ == '__main__':

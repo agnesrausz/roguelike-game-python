@@ -50,3 +50,52 @@ def put_player_on_board(board, player):
     """
     row, col = player["position"]
     board[row][col] = player["icon"]
+
+
+def remove_player_from_board(board, player):
+    """
+    Modifies the game board by removing the player icon from its previous coordinates.
+
+    Args:
+    list: The game board
+    dictionary: The player information containing the icon and coordinates
+
+    Returns:
+    Nothing
+    """
+    row, col = player["position"]
+    board[row][col] = " "
+
+
+def move_player(board, player, key):
+    """
+    Modifies the player coordinates based on the input key.
+
+    Args:
+    list: The game board
+    dictionary: The player information containing the icon and coordinates
+    str: The input key
+
+    Returns:
+    Nothing
+    """
+    remove_player_from_board(board, player)
+    row, col = player["position"]
+    new_row, new_col = row, col
+
+    if key == 'w':
+        new_row -= 1
+    elif key == 's':
+        new_row += 1
+    elif key == 'a':
+        new_col -= 1
+    elif key == 'd':
+        new_col += 1
+
+    # Check for out-of-bounds
+    if new_row >= len(board) or new_col >= len(board[0]) or new_row < 0 or new_col < 0:
+        return
+
+    # Check for wall collision
+    if board[new_row][new_col] != "#":
+        player["position"] = (new_row, new_col)

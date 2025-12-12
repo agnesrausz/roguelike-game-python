@@ -45,7 +45,7 @@ There are many useful methods like `pop` or `setdefault`. See the documentation 
 
 ## Notebooks
 
-- [Dictionaries](/materials/dictionaries.md)
+- [Dictionaries](/background_materials/dictionaries.md)
 
 ## Further reading
 

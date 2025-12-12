@@ -128,8 +128,8 @@ You will learn and practice how to do the following things in Python:
 
 ## Background materials
 
-- [Dictionaries](materials/python-dictionaries.md)
-- [Modifying objects](materials/python-modifying-objects.md)
-- [User input](materials/python-io.md)
-- [Clean code](materials/clean-code.md)
+- [Dictionaries](background_materials/python-dictionaries.md)
+- [Modifying objects](background_materials/python-modifying-objects.md)
+- [User input](background_materials/python-io.md)
+- [Clean code](background_materials/clean-code.md)
 - [About Python modules](https://realpython.com/python-modules-packages/) (until the section "Python Packages")

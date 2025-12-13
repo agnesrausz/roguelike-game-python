@@ -31,8 +31,8 @@ def create_board(width, height):
         board[row][width - 1]["terrain"] = "#"  # Right wall
 
     # Add gates
-    board[random.randint(1, height - 2)][0]["terrain"] = "G"  # Start gate
-    board[random.randint(1, height - 2)][width - 1]["terrain"] = "G"  # End gate
+    board[random.randint(1, height - 2)][0]["terrain"] = "S"  # Start gate
+    board[random.randint(1, height - 2)][width - 1]["terrain"] = "E"  # End gate
 
     return board
 
@@ -99,7 +99,7 @@ def is_valid_move(board, row, col):
     bool: True if the move is valid, False otherwise
     """
     # Check bounds
-    if row < 0 or row >= len(board) or col < 0 or col >= len(board[0]):
+    if is_out_of_bounds(board, row, col):
         return False
 
     # Check for wall collision
@@ -107,6 +107,23 @@ def is_valid_move(board, row, col):
         return False
 
     return True
+
+
+def is_out_of_bounds(board, row, col):
+    """
+    Checks if the specified position is out of the board bounds.
+
+    Args:
+    list: The game board
+    int: The target row
+    int: The target column
+
+    Returns:
+    bool: True if out of bounds, False otherwise
+    """
+    if row < 0 or row >= len(board) or col < 0 or col >= len(board[0]):
+        return True
+    return False
 
 
 def calculate_new_position(player, key):
@@ -133,3 +150,24 @@ def calculate_new_position(player, key):
         new_col += 1
 
     return new_row, new_col
+
+
+def get_gate_transition_delta(board, player, new_position):
+    """
+    Determines if the new position is a gate and returns the level transition delta.
+    Args:
+    list: The game board
+    dictionary: The player information containing the current position
+    tuple: The new (row, col) position
+
+    Returns:
+    int: 1 if moving to next level, -1 if moving to previous level, 0 otherwise
+    """
+    p_row, p_col = player["position"]
+    new_p_row, new_p_col = new_position
+    if board[p_row][p_col]["terrain"] in ["S", "E"] and is_out_of_bounds(board, new_p_row, new_p_col):
+        if board[p_row][p_col]["terrain"] == "E":
+            return 1
+        elif board[p_row][p_col]["terrain"] == "S":
+            return -1
+    return 0

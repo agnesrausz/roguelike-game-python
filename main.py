@@ -24,26 +24,55 @@ def create_player():
     return player
 
 
-def main():
-    player = create_player()
-    board = engine.create_board(BOARD_WIDTH, BOARD_HEIGHT)
+def run_level(board, player, level):
+    """
+    Runs a single level of the game.
 
+    Args:
+    list: Game board
+    dict: Player object
+    int: Current level
+
+    Returns:
+    str: 'quit' if player quits,
+    int: level if player exits through gate
+    """
     ui.clear_screen()
-    is_running = True
-    while is_running:
+
+    while True:
         engine.put_player_on_board(board, player)
         ui.display_board(board)
 
         key = util.key_pressed()
         if key == 'q':
-            is_running = False
+            return 'quit'
         elif key in ['w', 'a', 's', 'd']:
             new_position = engine.calculate_new_position(player, key)
-            engine.move_player(board, player, new_position)
-        else:
-            pass
+            level_delta = engine.get_gate_transition_delta(board, player, new_position)
+            if level_delta == 0:
+                engine.move_player(board, player, new_position)
+            else:
+                engine.remove_player_from_board(board, player)
+                return level + level_delta
 
         ui.clear_screen()
+
+
+def main():
+    player = create_player()
+    board = engine.create_board(BOARD_WIDTH, BOARD_HEIGHT)
+    board2 = engine.create_board(40, 20)
+    boards = [board, board2]
+    level = 0
+
+    while True:
+        level = run_level(boards[level], player, level)
+
+        if level == 'quit':
+            break
+
+        player["position"] = (PLAYER_START_ROW, PLAYER_START_COL)
+        # Calculate player start position for new level
 
 
 if __name__ == '__main__':

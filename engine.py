@@ -1,5 +1,4 @@
 import random
-
 import ui
 
 
@@ -20,7 +19,7 @@ def create_board(width, height):
     for _ in range(height):
         row = []
         for _ in range(width):
-            row.append({"terrain": ui.FLOOR_ICON, "entity": None})
+            row.append({"terrain": ui.FLOOR_ICON, "entity": None, "item": None})
         board.append(row)
 
     # Add walls around the edges
@@ -36,7 +35,27 @@ def create_board(width, height):
     board[random.randint(1, height - 2)][0]["terrain"] = ui.START_GATE_ICON  # Start gate
     board[random.randint(1, height - 2)][width - 1]["terrain"] = ui.END_GATE_ICON  # End gate
 
+    # Add items randomly
+    item_position = (random.randint(1, height - 2), random.randint(1, width - 2))
+    put_item_on_board(board, {"icon": ui.ITEM_ICON}, item_position)
+
     return board
+
+
+def put_item_on_board(board, item, position):
+    """
+    Adds an item to the board at the specified position.
+
+    Args:
+    list: The game board
+    dictionary: The item information containing the icon and coordinates
+    tuple: The (row, col) position to place the item
+
+    Returns:
+    Nothing
+    """
+    row, col = position
+    board[row][col]["item"] = item["icon"]
 
 
 def put_player_on_board(board, player):

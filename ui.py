@@ -5,6 +5,7 @@ WALL_ICON = '#'
 FLOOR_ICON = ' '
 START_GATE_ICON = 'S'
 END_GATE_ICON = 'E'
+ITEM_ICON = '!'
 
 
 def display_board(board):
@@ -17,8 +18,18 @@ def display_board(board):
     Returns:
     Nothing
     """
+    cell_display = []
+
     for row in board:
-        print(''.join(cell["entity"] if cell["entity"] is not None else cell["terrain"] for cell in row))
+        for cell in row:
+            if cell["entity"] is not None:
+                cell_display.append(cell["entity"])
+            elif cell["item"] is not None:
+                cell_display.append(cell["item"])
+            else:
+                cell_display.append(cell["terrain"])
+        cell_display.append('\n')
+    print(''.join(cell_display))
 
 
 def clear_screen():

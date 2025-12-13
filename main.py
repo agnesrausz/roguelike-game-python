@@ -1,26 +1,10 @@
 import util
 import engine
 import ui
-
-PLAYER_START_COL = 3
-PLAYER_START_ROW = 3
+import entities
 
 BOARD_WIDTH = 30
 BOARD_HEIGHT = 20
-
-
-def create_player():
-    """
-    Creates a 'player' dictionary for storing all player related information - i.e. player icon, player position.
-
-    Returns:
-    dictionary
-    """
-    player = {
-        "icon": ui.PLAYER_ICON,
-        "position": (PLAYER_START_ROW, PLAYER_START_COL)
-    }
-    return player
 
 
 def run_level(board, player):
@@ -58,7 +42,7 @@ def run_level(board, player):
 
 
 def main():
-    player = create_player()
+    player = entities.create_player()
     board = engine.create_board(BOARD_WIDTH, BOARD_HEIGHT)
     board2 = engine.create_board(40, 20)
     boards = [board, board2]

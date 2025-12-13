@@ -171,3 +171,28 @@ def get_gate_transition_delta(board, player, new_position):
         elif board[p_row][p_col]["terrain"] == "S":
             return -1
     return 0
+
+
+def get_player_start_position(board, level_delta):
+    """
+    Gets the player's starting position based on level transition.
+
+    Args:
+    list: The game board
+    int: The level transition delta
+
+    Returns:
+    tuple: The (row, col) starting position for the player
+    """
+    if level_delta == 1:  # Moving to next level
+        for row_idx, row in enumerate(board):
+            for col_idx, cell in enumerate(row):
+                if cell["terrain"] == "S":
+                    return row_idx, col_idx
+    elif level_delta == -1:  # Moving to previous level
+        for row_idx, row in enumerate(board):
+            for col_idx, cell in enumerate(row):
+                if cell["terrain"] == "E":
+                    return row_idx, col_idx
+    # Default start position (if no gate found)
+    return 3, 3

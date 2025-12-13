@@ -24,7 +24,7 @@ def create_player():
     return player
 
 
-def run_level(board, player, level):
+def run_level(board, player):
     """
     Runs a single level of the game.
 
@@ -35,7 +35,7 @@ def run_level(board, player, level):
 
     Returns:
     str: 'quit' if player quits,
-    int: level if player exits through gate
+    int: level delta if player goes through a gate
     """
     ui.clear_screen()
 
@@ -53,7 +53,7 @@ def run_level(board, player, level):
                 engine.move_player(board, player, new_position)
             else:
                 engine.remove_player_from_board(board, player)
-                return level + level_delta
+                return level_delta
 
         ui.clear_screen()
 
@@ -66,13 +66,19 @@ def main():
     level = 0
 
     while True:
-        level = run_level(boards[level], player, level)
+        level_delta = run_level(boards[level], player)
 
-        if level == 'quit':
+        if level_delta == 'quit':  # TODO: need other way to quit
             break
 
-        player["position"] = (PLAYER_START_ROW, PLAYER_START_COL)
-        # Calculate player start position for new level
+        level += level_delta
+
+        if level < 0:
+            level = 0
+        elif level >= len(boards):
+            break
+
+        player["position"] = engine.get_player_start_position(boards[level], level_delta)
 
 
 if __name__ == '__main__':

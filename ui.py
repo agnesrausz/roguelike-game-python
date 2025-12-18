@@ -6,13 +6,14 @@ FLOOR_ICON = ' '
 START_GATE_ICON = 'S'
 END_GATE_ICON = 'E'
 ITEM_ICON = '!'
-FOOD_ICON = '%'
+FOOD_ICON = 'F'
 POTION_ICON = '+'
 SWORD_ICON = '/'
 SHIELD_ICON = ']'
+KEY_ICON = '~'
 
 
-def display_board(board):
+def display_board(board, player):
     """
     Displays complete game board on the screen
 

@@ -11,11 +11,15 @@ ITEM_TYPES = {
         "icon": ui.FOOD_ICON,
         "name": "Food",
         "heal": 10,
+        "auto_consume": True,
+        "consumable": True,
     },
     "potion": {
         "icon": ui.POTION_ICON,
         "name": "Potion",
         "heal": 30,
+        "auto_consume": False,
+        "consumable": True,
     },
     "sword": {
         "icon": ui.SWORD_ICON,
@@ -26,6 +30,11 @@ ITEM_TYPES = {
         "icon": ui.SHIELD_ICON,
         "name": "Shield",
         "defense": 10,
+    },
+    "key": {
+        "icon": ui.KEY_ICON,
+        "name": "Key",
+        "opens_doors": True
     }
 }
 
@@ -41,12 +50,18 @@ def create_player():
         "icon": ui.PLAYER_ICON,
         "position": (PLAYER_START_ROW, PLAYER_START_COL),
         "name": "Player",
-        "inventory": []
+        "inventory": [],
+        "hp": 10,
+        "max_hp": 20,
+        "damage": 5,
+        "defense": 1,
+        "experience": 0,
+        "level": 1
     }
     return player
 
 
-def create_item(item_type="item", position=(5,5)):
+def create_item(item_type="item", position=(5, 5)):
     """
     Creates an item dictionary for storing item related information - i.e. item icon, item position.
     Item types can be 'item', 'food', 'potion', 'sword', 'shield'.
@@ -68,6 +83,3 @@ def create_item(item_type="item", position=(5,5)):
 
     item.update(base)
     return item
-
-
-

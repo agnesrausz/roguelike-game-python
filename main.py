@@ -24,7 +24,7 @@ def run_level(board, player):
 
     while True:
         engine.put_player_on_board(board, player)
-        ui.display_board(board)
+        ui.display_board(board, player)
 
         key = util.key_pressed()
         if key == 'q':

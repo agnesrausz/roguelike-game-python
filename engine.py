@@ -99,7 +99,7 @@ def remove_item_from_board(board, item):
     """
     row, col = item["position"]
     board[row][col]["item"] = None
-    item ["position"] = None
+    item["position"] = None
 
 
 def pick_up_item(board, player):
@@ -118,8 +118,11 @@ def pick_up_item(board, player):
     if cell["item"] is not None:
         item = cell["item"]
         remove_item_from_board(board, item)
-        item["position"] = 'inventory'
-        player["inventory"].append(item)
+        if item.get("consumable", False) and item.get("auto_consume", False):
+            consume_item(player, item)
+        else:
+            item["position"] = 'inventory'
+            player["inventory"].append(item)
 
 
 def put_player_on_board(board, player):
@@ -286,3 +289,26 @@ def get_player_start_position(board, level_delta):
                     return row_idx, col_idx
     # Default start position (if no gate found)
     return 3, 3
+
+
+def consume_item(player, item):
+    """
+    Consumes an item and applies its effects to the player.
+
+    Args:
+    dictionary: The player
+    dictionary: The item
+
+    Returns:
+    Nothing
+    """
+    # Health restoration
+    if "heal" in item:
+        player["hp"] = min(player["hp"] + item["heal"], player["max_hp"])
+
+
+    # Remove item from inventory
+    try:
+        player["inventory"].remove(item)
+    except ValueError:
+        pass  # Item wasn't in inventory

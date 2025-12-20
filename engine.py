@@ -47,6 +47,14 @@ def create_board(width, height):
     put_item_on_board(board, entities.create_item(), item_position)
     item_position = (random.randint(1, height - 2), random.randint(1, width - 2))
     put_item_on_board(board, entities.create_item("food", ), item_position)
+    item_position = (random.randint(1, height - 2), random.randint(1, width - 2))
+    put_item_on_board(board, entities.create_item("hp_potion"), item_position)
+    item_position = (random.randint(1, height - 2), random.randint(1, width - 2))
+    put_item_on_board(board, entities.create_item("sword"), item_position)
+    item_position = (random.randint(1, height - 2), random.randint(1, width - 2))
+    put_item_on_board(board, entities.create_item("armor"), item_position)
+    item_position = (random.randint(1, height - 2), random.randint(1, width - 2))
+    put_item_on_board(board, entities.create_item("shield"), item_position)
 
     return board
 

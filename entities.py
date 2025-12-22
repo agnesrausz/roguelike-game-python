@@ -171,3 +171,24 @@ def create_item(item_type="item", position=(5, 5)):
 
     item.update(base)
     return item
+
+
+def create_enemy(entity_type="friendly", position=(9, 9)):
+    """
+    Creates an entity dictionary for storing entity related information - i.e. entity icon, entity position.
+    Entity types can be 'friendly', 'hostile', 'neutral' .
+
+    Returns:
+    dictionary
+    """
+    entity = {
+        "icon": ui.ENTITY_ICON,
+        "position": position,
+        "name": "Monster",
+        "type": entity_type,
+        "hp": 20,
+        "max_hp": 20,
+        "damage": 5,
+        "defense": 2,
+    }
+    return entity

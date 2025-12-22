@@ -1,10 +1,17 @@
 import os
 
+ENTITY_ICON = '@'
 PLAYER_ICON = 'ฏ'
+DEAD_PLAYER_ICON = '✝'
+FRIENDLY_NPC_ICON = 'ซ'
+ENEMY_NPC_ICON = 'ภ'
+NEUTRAL_NPC_ICON = '๕'
+
 WALL_ICON = '▒'
 FLOOR_ICON = ' '
 START_GATE_ICON = 'Ω'
 END_GATE_ICON = 'Ώ'
+
 ITEM_ICON = 'i'
 FOOD_ICON = '≡'
 POTION_ICON = 'δ'
@@ -15,7 +22,6 @@ ARMOR_ICON = '◊'
 KEY_ICON = '๛'
 SHURIKEN_ICON = '✦'
 KNIFE_ICON = '/'
-DEAD_PLAYER_ICON = '✝'
 
 
 def display_board(board, player):

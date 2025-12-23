@@ -173,7 +173,7 @@ def create_item(item_type="item", position=(5, 5)):
     return item
 
 
-def create_enemy(entity_type="friendly", position=(9, 9)):
+def create_enemy(entity_type="hostile", position=(9, 9)):
     """
     Creates an entity dictionary for storing entity related information - i.e. entity icon, entity position.
     Entity types can be 'friendly', 'hostile', 'neutral' .

@@ -397,3 +397,29 @@ def is_alive(player):
     bool: True if alive, False if dead
     """
     return player["hp"] > 0
+
+
+def move_enemies(board, enemies):
+    """
+    Move all enemies on the board autonomously.
+    Enemies move randomly in one of the four directions, respecting walls.
+
+    Args:
+        board: The game board (2D list)
+        enemies: List of enemy dictionaries with 'x', 'y', and 'icon' keys
+    """
+    directions = [
+        (-1, 0),  # up
+        (1, 0),  # down
+        (0, -1),  # left
+        (0, 1)  # right
+    ]
+
+    for enemy in enemies:
+        # Choose random direction
+        dir_row, dir_col = random.choice(directions)
+        current_row, current_col=enemy['position']
+        new_row, new_col = current_row + dir_row, current_col + dir_col
+        new_position = new_row, new_col
+
+        move_player(board, enemy, new_position)
